@@ -3,10 +3,12 @@ São interfaces que possibilitam extender/incrementar funcionalidades do Keycloa
 
 # API Mock User (pasta mock-user-node-api)
 É uma api em express (nodejs) para servir de autenticador externo.
-Existem apenas 3 usuários que ficam armazenados em uma lista em memória (somente pra exemplo). São eles (username/password)
+Existem apenas 3 usuários que ficam armazenados em uma lista em memória. São eles (username/password)
 - andre/andre
 - emanoel/emanoel
 - santini/santini
+
+É um projeto bem simples só pra "mockar" um exemplo de serviço externo!
 
 # External User SPI (pasta external-user-spi)
 Projeto JAVA que implementa uma User Storage Provider para permitir que o Keycloak se autentique com o nossa api externa.
