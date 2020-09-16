@@ -1,21 +1,21 @@
-#Service Provider Interfaces (SPI)
+# Service Provider Interfaces (SPI)
 São interfaces que possibilitam extender/incrementar funcionalidades do Keycloak
 
-#API Mock User (pasta mock-user-node-api)
+# API Mock User (pasta mock-user-node-api)
 É uma api em express (nodejs) para servir de autenticador externo.
 Existem apenas 3 usuários que ficam armazenados em uma lista em memória (somente pra exemplo). São eles (username/password)
 - andre/andre
 - emanoel/emanoel
 - santini/santini
 
-#External User SPI (pasta external-user-spi)
+# External User SPI (pasta external-user-spi)
 Projeto JAVA que implementa uma User Storage Provider para permitir que o Keycloak se autentique com o nossa api externa.
 
-#Compilando
+# Compilando
 Abra o projeto external-user-spi e o compile para gerar o JAR. Copie o JAR para a pasta deployments, essa pasta é um volume no docker que aponta justamente pra pasta deployments do keycloak. Qualquer JAR nessa pasta será deployado no server e sua funcionalidade será incorporada no keycloak. Esse é o poder das SPI!
 
 
-#Executando o projeto
+# Executando o projeto
 1. Existe um docker compose na pasta root do projeto, para executá-lo abra um prompt de comando e navegue para a pasta deste arquivo.
 2. Execute o comando: docker-compose up --build -d
 3. Acesse http://localhost:3000 para verificar ser a API de autenticação externa está funcionando
@@ -33,7 +33,7 @@ Abra o projeto external-user-spi e o compile para gerar o JAR. Copie o JAR para 
 
 Obs: Para parar o docker basta executar "docker-compose down" no prompt
 
-#Pontos importantes do código
+# Pontos importantes do código
 - A classe "ExternalUserStorageProviderFactory" é responsável pelo nome que aparecerá na tela do User Federation
 - A classe "ExternalUserStorageProvider" é a principal, toda a lógica de autenticação é feita nela. Veja o método "isValid" ele que valida o usuário na API EXTERNA
 - Nesse exemplo sempre que o usuário é validado na API EXTERNA e está correto eu adiciono no LocalStorage do Keycloak com a ROLE ADMIN! Veja o método "isValid" e "addToStorage"
