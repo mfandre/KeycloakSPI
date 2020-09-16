@@ -40,13 +40,13 @@ Obs: Para parar o docker basta executar "docker-compose down" no prompt
 - Caso queira adicionar alguma nova role ao usuário no momento em que ele for inserido no keycloak basta alterar o método "addToStorage"
 - A classes responsáveis pela chamada REST a nossa API Mock User são "ExternalUserProviderClient" e "ExternalUserProviderService"
 
-#Implantando em Produção
+# Implantando em Produção
 Para implantar em produção basta pegar o JAR gerado no seu projeto e adicionar na pasta deployments da instalação do seu keycloak. Essa pasta varia de acordo com sua instalação. Por exemplo, o keycloak instalado em ambientes linux a pasta é "/opt/jboss/keycloak/standalone/deployments/"
 
-#Quer aprender mais coisas do que eu? Estude os links... 
+# Quer aprender mais coisas do que eu? Estude os links... 
 - https://www.keycloak.org/docs/4.8/server_development/index.html
 - https://github.com/thomasdarimont/keycloak-extension-playground
 - https://www.programcreek.com/java-api-examples/?api=org.keycloak.authentication.AuthenticationFlowContext
 
-#Dúvidas?
+# Dúvidas?
 andredemattos.ferraz@hallibuton.com
