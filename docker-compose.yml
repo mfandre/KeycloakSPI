@@ -1,0 +1,25 @@
+version: '3.1'
+networks:
+        default:
+            driver: bridge
+            ipam:
+                config:
+                    - subnet: 10.30.0.0/16
+
+services:
+    keycloak:
+        image: jboss/keycloak:4.8.3.Final
+        environment:
+            - KEYCLOAK_USER=admin
+            - KEYCLOAK_PASSWORD=admin
+        volumes:
+        - ./keycloak/deployments:/opt/jboss/keycloak/standalone/deployments/
+        ports:
+            - 8989:8080
+        restart: always
+
+    mock-users-external:
+        build: ./keycloak/mock-user-node-api
+        ports:
+            - 3000:3000
+        restart: always

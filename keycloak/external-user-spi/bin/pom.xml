@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.dukecon</groupId>
+    <artifactId>keycloak-doag-user-spi</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <scm>
+        <url>https://github.com/dukecon/doag-user-spi.git</url>
+        <connection>scm:git:git@github.com:dukecon/doag-user-spi.git</connection>
+    </scm>
+    <name>DOAG KeyCloak User SPI</name>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+        </license>
+    </licenses>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <!-- Set this to localhost if you would like to test upload server -->
+        <nexus.repository.host>dev.dukecon.org</nexus.repository.host>
+        <nexus.repository.port />
+        <nexus.repository.base>/nexus</nexus.repository.base>
+
+        <!-- Please keep (version) properties in alphabetical order! -->
+        <jboss.logging.version>3.3.0.Final</jboss.logging.version>
+        <junit.version>4.12</junit.version>
+        <keycloak.version>2.5.1.Final</keycloak.version>
+        <resteasy.version>3.0.14.Final</resteasy.version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>dukecon</id>
+            <url>http://${nexus.repository.host}${nexus.repository.port}${nexus.repository.base}/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>dukecon</id>
+            <url>http://${nexus.repository.host}${nexus.repository.port}${nexus.repository.base}/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>dukecon-snapshots</id>
+            <name>DukeCon Snapshots</name>
+            <url>http://${nexus.repository.host}${nexus.repository.port}${nexus.repository.base}/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>dukecon-releases</id>
+            <name>DukeCon Snapshots</name>
+            <url>http://${nexus.repository.host}${nexus.repository.port}${nexus.repository.base}/content/repositories/releases</url>
+        </repository>
+        <site>
+            <id>dukecon-site</id>
+            <name>DukeCon Site</name>
+            <url>dav:http://${nexus.repository.host}${nexus.repository.port}${nexus.repository.base}/content/repositories/site/${project.groupId}/${project.artifactId}/${project.version}</url>
+        </site>
+    </distributionManagement>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/dukecon/doag-user-spi/issues</url>
+    </issueManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-core</artifactId>
+            <version>${keycloak.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-server-spi</artifactId>
+            <version>${keycloak.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging</artifactId>
+            <version>${jboss.logging.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-client</artifactId>
+            <version>${resteasy.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+    </build>
+
+</project>
