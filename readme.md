@@ -51,4 +51,3 @@ Para implantar em produção basta pegar o JAR gerado no seu projeto e adicionar
 - https://www.programcreek.com/java-api-examples/?api=org.keycloak.authentication.AuthenticationFlowContext
 
 # Dúvidas?
-andredemattos.ferraz@hallibuton.com
