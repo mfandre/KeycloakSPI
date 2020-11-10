@@ -19,5 +19,6 @@ public interface ExternalUserProviderClient {
     @GET
     @Path("/validatePassword")
     String validatePassword(@HeaderParam("user") String username,
-                            @HeaderParam("password") String password);
+                            @HeaderParam("password") String password,
+                            @HeaderParam("resource") String resource);
 }

@@ -50,8 +50,8 @@ public class ExternalUserStorageProvider
             local = session.userLocalStorage().addUser(realm, username);
             local.setFederationLink(model.getId());
             local.setEnabled(true);
-            local.grantRole(realm.getRole("admin"));// here you need to added what do you want...
-            local.grantRole(realm.getRole("create-realm"));// here you need to added what do you want...
+            //local.grantRole(realm.getRole("admin"));// here you need to added what do you want...
+            //local.grantRole(realm.getRole("create-realm"));// here you need to added what do you want...
             logger.info("added to local <======");
             session.userCache().clear();
         }
@@ -82,6 +82,7 @@ public class ExternalUserStorageProvider
 	
 	@Override
 	public UserModel getUserById(String id, RealmModel realm) {
+		logger.info("getUserById");
 		String externalId = StorageId.externalId(id);
 		ExternalUser externalUser = externalUserService.getUserById(externalId);
 		if (null != externalUser) {
@@ -94,6 +95,7 @@ public class ExternalUserStorageProvider
 
 	@Override
 	public UserModel getUserByUsername(String username, RealmModel realm) {
+		logger.info("getUserByUsername");
 		ExternalUser externalUser = externalUserService.getUser(username);
 		if (null != externalUser) {
 			UserCache.addUser(externalUser);
@@ -105,6 +107,7 @@ public class ExternalUserStorageProvider
 
 	@Override
 	public UserModel getUserByEmail(String email, RealmModel realm) {
+		logger.info("getUserByEmail");
 		return getUserByUsername(email, realm);
 	}
 
@@ -125,8 +128,10 @@ public class ExternalUserStorageProvider
 			return false;
 		}
 		UserCredentialModel cred = (UserCredentialModel) input;
+		String resource = this.session.getContext().getClient().getClientId();
+		logger.info("CLIENT ID = " + resource);
 		//String realUsername = user.getFirstAttribute(UserAdapter.REAL_USERNAME_ATTRIBUTE);
-		boolean rtn = externalUserService.validateUserPassword(user.getUsername(), cred.getValue());
+		boolean rtn = externalUserService.validateUserPassword(user.getUsername(), cred.getValue(), resource);
 		
 		if(rtn) {
 			logger.info("isValid = " + user.getUsername());

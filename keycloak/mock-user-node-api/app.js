@@ -11,7 +11,8 @@ const users = [
 		firstName: "andre",
 		lastName: "ferraz",
 		realUsername: "andre",
-		password: "andre"
+		password: "andre",
+		roles: ["admin", "spob", "apto"]
 	},
 	{
 		id: "2",
@@ -20,7 +21,8 @@ const users = [
 		firstName: "emanoel",
 		lastName: "ferreira",
 		realUsername: "emanoel",
-		password: "emanoel"
+		password: "emanoel",
+		roles: ["sis", "sip"]
 	},
 	{
 		id: "3",
@@ -29,7 +31,8 @@ const users = [
 		firstName: "luiz",
 		lastName: "santini",
 		realUsername: "santini",
-		password: "santini"
+		password: "santini",
+		roles: ["admin"]
 	}
 ]
 
@@ -42,10 +45,12 @@ app.get('/validatePassword', (req, res) => {
 	let username = req.headers.user || req.headers.username
 	let user = req.headers.user
 	let password = req.headers.password
+	let resource = req.headers.resource
 	
 	console.log("user", user)
 	console.log("password", password)
 	console.log("username", username)
+	console.log("resource", resource)
 	
 	let found_user = undefined
 	for(let i = 0; i < users.length; i++){
@@ -95,7 +100,25 @@ app.get('/getUser', (req, res) => {
 		}
 	}
 	
+	console.log("found_user", found_user)
+	
 	res.send(JSON.stringify(found_user))
+})
+
+app.get('/getUserRoles', (req, res) => {
+	console.log('getUserRoles')
+	let username = req.headers.user || req.headers.username
+	
+	console.log("username", username)
+	
+	let found_user = undefined
+	for(let i = 0; i < users.length; i++){
+		if(users[i].username == username){
+			found_user = users[i]
+		}
+	}
+	
+	res.send(JSON.stringify(found_user.roles))
 })
 
 app.listen(port, () => {

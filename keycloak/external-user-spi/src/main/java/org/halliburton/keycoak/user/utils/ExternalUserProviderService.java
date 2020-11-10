@@ -24,6 +24,7 @@ public class ExternalUserProviderService {
     }
 
     private void buildClient(String url, String key) {
+    	logger.info("buildClient: " + url + " | " + key);
         ResteasyClient client = new ResteasyClientBuilder()
                 .register(new AuthFilter(key))
                 .register(new RestLoggingFilter())
@@ -72,9 +73,9 @@ public class ExternalUserProviderService {
         return user;
     }
 
-    public boolean validateUserPassword(String username, String password) {
+    public boolean validateUserPassword(String username, String password, String resource) {
         try {
-            String validationResult = externalUserClient.validatePassword(username, password);
+            String validationResult = externalUserClient.validatePassword(username, password, resource);
             return Boolean.parseBoolean(validationResult.trim());
         } catch (Exception e) {
             handleException(e, "validatePassword");

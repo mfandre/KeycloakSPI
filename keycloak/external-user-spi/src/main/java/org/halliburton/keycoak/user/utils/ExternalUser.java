@@ -1,10 +1,12 @@
 package org.halliburton.keycoak.user.utils;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * @author André de Mattos Ferraz
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ExternalUser {
 
 	@JsonProperty("id")
