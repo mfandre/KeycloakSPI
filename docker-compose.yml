@@ -23,3 +23,11 @@ services:
         ports:
             - 3000:3000
         restart: always
+    
+    second-app:
+        container_name: second-app
+        build: ./keycloak/second-app/
+        ports:
+            - 3001:80
+        depends_on:
+            - keycloak
